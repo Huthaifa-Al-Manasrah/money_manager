@@ -5,6 +5,7 @@ import 'package:money_manager/screens/add_transaction_screen.dart';
 import 'package:money_manager/screens/transaction_details_screen.dart';
 import 'package:provider/provider.dart';
 
+import '../generated/l10n.dart';
 import '../providers/transaction_provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -23,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
     transactionProvider.fetchTransactions();
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Money Manager')),
+      appBar: AppBar(title: Text(S.of(context).moneyManager)),
       body: Container(
         clipBehavior: Clip.hardEdge,
         decoration: const BoxDecoration(
@@ -37,7 +38,8 @@ class _HomeScreenState extends State<HomeScreen> {
           builder: (context, provider, child) {
             final groupedTransactions = provider.groupTransactionsByMonth();
 
-            return ListView.builder(
+            if(groupedTransactions.keys.isNotEmpty) {
+              return ListView.builder(
               itemCount: groupedTransactions.keys.length,
               itemBuilder: (context, index) {
                 final month = groupedTransactions.keys.elementAt(index);
@@ -92,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: [
                               const SizedBox(width: 5),
                               Text(
-                                '\$${difference.toStringAsFixed(2)}',
+                                '${difference.toStringAsFixed(2)}\$',
                                 style: const TextStyle(
                                   color: Colors.blue,
                                   fontWeight: FontWeight.bold,
@@ -126,8 +128,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                           Image.asset('assets/icons/poor.png',
                                               width: 30, height: 30),
                                           const SizedBox(height: 20),
-                                          const Text('Inputs',
-                                              style: TextStyle(
+                                          Text(S.of(context).inputs,
+                                              style: const TextStyle(
                                                 color: Colors.green,
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 16,
@@ -154,8 +156,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                               width: 20,
                                               height: 30),
                                           const SizedBox(height: 20),
-                                          const Text('Expenses',
-                                              style: TextStyle(
+                                          Text(S.of(context).expenses,
+                                              style: const TextStyle(
                                                 color: Colors.red,
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 16,
@@ -179,7 +181,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       children: transactions.map((tx) {
                         return ListTile(
-                          leading: Image.file(File(tx.imagePath)),
+                          leading: tx.imagePath != null ? Image.file(File(tx.imagePath!)) : const Icon(Icons.receipt_long),
                           title: Text(tx.title,
                               style: const TextStyle(
                                   fontSize: 16, fontWeight: FontWeight.w700)),
@@ -220,6 +222,19 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 );
               },
+            );
+            }
+
+
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(Icons.receipt_long, size: 50),
+                  const SizedBox(height: 10),
+                  Text(S.of(context).thereAreNoEntriesYet, style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 18))
+                ],
+              ),
             );
           },
         ),

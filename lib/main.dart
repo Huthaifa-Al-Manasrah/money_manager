@@ -2,8 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:money_manager/providers/transaction_provider.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:money_manager/screens/home_screen.dart';
 import 'package:provider/provider.dart';
+
+import 'generated/l10n.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,6 +28,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Money Manager',
       debugShowCheckedModeBanner: false,
+      localizationsDelegates: const [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      locale: const Locale('ar'),
+      supportedLocales: const [Locale('ar')],
       theme: ThemeData(
         primarySwatch: Colors.blue,
         scaffoldBackgroundColor: Colors.amber,

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:money_manager/entities/transaction.dart';
 import 'dart:io';
 
+import '../generated/l10n.dart';
+
 class TransactionDetailsScreen extends StatelessWidget {
   final TransactionEntity transaction;
 
@@ -11,7 +13,7 @@ class TransactionDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Transaction Details'),
+        title: Text(S.of(context).transactionDetails),
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -29,18 +31,18 @@ class TransactionDetailsScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Title: ${transaction.title}', style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                Text('${S.of(context).title}: ${transaction.title}', style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                 const SizedBox(height: 10),
-                Text('Description: ${transaction.description}', style: const TextStyle(fontSize: 16)),
+                Text('${S.of(context).description}: ${transaction.description}', style: const TextStyle(fontSize: 16)),
                 const SizedBox(height: 10),
-                Text('Amount: \$${transaction.amount.toStringAsFixed(2)}', style: const TextStyle(fontSize: 16)),
+                Text('${S.of(context).amount}: \$${transaction.amount.toStringAsFixed(2)}', style: const TextStyle(fontSize: 16)),
                 const SizedBox(height: 10),
-                Text('Date: ${transaction.date.toLocal().toString().split(' ')[0]}', style: const TextStyle(fontSize: 16)),
+                Text('${S.of(context).date}: ${transaction.date.toLocal().toString().split(' ')[0]}', style: const TextStyle(fontSize: 16)),
                 const SizedBox(height: 20),
-                Text('Type: ${transaction.isInput ? 'Input' : 'Expense'}', style: TextStyle(fontSize: 16)),
+                Text('${S.of(context).type}: ${transaction.isInput ? S.of(context).input : S.of(context).expense}', style: const TextStyle(fontSize: 16)),
                 const SizedBox(height: 20),
-                if (transaction.imagePath.isNotEmpty)
-                  Image.file(File(transaction.imagePath)),
+                if(transaction.imagePath != null)
+                  Image.file(File(transaction.imagePath!)),
               ],
             ),
           ),

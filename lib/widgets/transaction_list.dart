@@ -16,7 +16,7 @@ class TransactionList extends StatelessWidget {
       itemBuilder: (ctx, i) {
         final tx = transactions[i];
         return ListTile(
-          leading: Image.file(File(tx.imagePath)),
+          leading: tx.imagePath != null ? Image.file(File(tx.imagePath!)) : Image.asset('assets/images/bill.png'),
           title: Text(tx.title),
           subtitle: Text(tx.description),
           trailing: Text('\$${tx.amount.toStringAsFixed(2)}'),

@@ -1,0 +1,20 @@
+{
+"addTransaction":"Add Transaction",
+"title":"Title",
+"pleaseEnterATitle":"Please enter a title",
+"description":"Description",
+"pleaseEnterADescription":"Please enter a description",
+"amount":"Amount",
+"pleaseEnterAnAmount":"Please enter an amount",
+"pleaseEnterAValidNumber":"Please enter a valid number",
+"pickImage":"Pick Image",
+"input":"Input",
+"expense":"Expense",
+"inputs":"Inputs",
+"expenses":"Expenses",
+"moneyManager":"Money Manager",
+"thereAreNoEntriesYet":"There are no entries yet",
+"date":"Date",
+"type":"Type",
+"transactionDetails":"Transaction Details"
+}

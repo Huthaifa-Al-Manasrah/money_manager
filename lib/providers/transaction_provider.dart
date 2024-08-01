@@ -3,7 +3,6 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:money_manager/entities/transaction.dart';
 
-
 class TransactionProvider with ChangeNotifier {
   List<TransactionEntity> _transactions = [];
 

@@ -1,0 +1,20 @@
+{
+"addTransaction":"إضافة عملية",
+"title":"عنوان",
+"pleaseEnterATitle":"الرجاء إدخال عنوان",
+"description":"وصف",
+"pleaseEnterADescription":"الرجاء إدخال وصف",
+"amount":"المبلغ",
+"pleaseEnterAnAmount":"الرجاء إدخال المبلغ",
+"pleaseEnterAValidNumber":"من فضلك أدخل رقما صالحا",
+"pickImage":"اختر الصورة",
+"input":"مدخل",
+"expense":"مصروف",
+"inputs":"مدخلات",
+"expenses":"نفقات",
+"moneyManager":"مدير المال",
+"thereAreNoEntriesYet":"لا توجد إدخالات حتى الآن",
+"date":"تاريخ",
+"type":"النوع",
+"transactionDetails":"تفاصيل العملية"
+}
